@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import withRedux from 'next-redux-wrapper';
 import { TouchableOpacity, View, Image, Text, StyleSheet, } from 'react-native';
+import withRedux from 'next-redux-wrapper';
 import { Button, Input } from 'react-universal-ui';
 import Link from 'next/link';
 
+import Layout from '../components/layout';
 import Greeting from '../components/greeting';
 import store from '../store';
 import * as appActions from '../store/action/app';
@@ -23,16 +24,18 @@ export default class IndexPage extends Component {
 	props: Props;
 
 	render() {
-		return <View style={styles.container}>
-			<Greeting/>
-			<Text>Hello world! {this.props.counter}</Text>
-			<Button
-				wrapperStyle={{ marginTop: 5, marginBottom: 10, }}
-				title="Increase"
-				onPress={() => this.props.dispatch(appActions.increaseCounter())}/>
+		return <Layout>
+			<View style={styles.container}>
+				<Greeting/>
+				<Text>Hello world! {this.props.counter}</Text>
+				<Button
+					wrapperStyle={{ marginTop: 5, marginBottom: 10, }}
+					title="Increase"
+					onPress={() => this.props.dispatch(appActions.increaseCounter())}/>
 
-			<Link href="docs"><a>Goto Counter Page</a></Link>
-		</View>;
+				<Link href="docs"><a>Goto Counter Page</a></Link>
+			</View>
+		</Layout>;
 	}
 }
 

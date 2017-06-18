@@ -13,6 +13,7 @@ export const colors = {
 	main,
 	darkerMain,
 	lighterMain,
+	dark: '#1f2532',
 	danger: '#ff8142',
 	blue: '#2196F3',
 	orange: '#FF9800',

@@ -4,7 +4,7 @@ import * as Actions from '../actions';
 const initialState = {
 	counter: 0,
 	routeLoaded: true,
-	loadingProgress: 0,
+	loadingProgress: 1,
 };
 
 export default appReducer((state = initialState, action) => {

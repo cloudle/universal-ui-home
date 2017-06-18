@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import withRedux from 'next-redux-wrapper';
 import { Animated, Easing, Dimensions, View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 
-import store from '../store';
 import * as appActions from '../store/action/app';
 
 type Props = {
@@ -10,10 +9,9 @@ type Props = {
 	backgroundColor?: string,
 	shadowColor?: string,
 	progress?: number,
-	done?: boolean,
 };
 
-@withRedux(store, ({ app }) => {
+@connect(({ app }) => {
 	return {
 		counter: app.counter,
 		progress: app.loadingProgress,
@@ -31,65 +29,45 @@ export default class ProgressBar extends Component {
 	};
 
 	componentDidMount() {
-		this.startProgress();
+		this.interval = setInterval(this.optimisticTick, 200);
 	}
 
 	componentWillUnmount() {
-		this.interval && clearInterval(this.interval);
+		this.interval = clearInterval(this.interval);
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.done === true && nextProps.done === false) {
-			this.startProgress();
+		if (nextProps.progress < 1) {
+			this.interval && clearInterval(this.interval);
+			this.interval = setInterval(this.optimisticTick, 20);
 		}
 	}
 
 	render() {
-		const classes = this.props.done ? 'progress-bar done' : 'progress-bar',
+		const classes = this.props.progress >= 1 ? 'progress-bar done' : 'progress-bar',
 			progressStyle = {
 				width: `${this.props.progress * 100}%`,
 				backgroundColor: this.props.backgroundColor,
 				shadowColor: this.props.shadowColor,
 			};
 
-		return this.props.progress >= 1 ? <View>
-			<Text>{JSON.stringify(this.props.counter)}</Text>
-		</View> : <View className={classes} style={[styles.container, progressStyle]}>
-			<Text>{JSON.stringify(this.props.counter)}</Text>
-		</View>;
+		return <View className={classes} style={[styles.container, progressStyle]}/>;
 	}
-
-	startProgress = () => {
-		this.interval && clearInterval(this.interval);
-		this.interval = setInterval(this.tick, 20);
-		this.props.dispatch(appActions.updateLoadingProgress(0));
-	};
-
-	tick = () => {
-		if (this.props.done) {
-			this.closingTick();
-		} else {
-			this.optimisticTick();
-		}
-	};
 
 	optimisticTick = () => {
 		const currentProgress = this.props.progress;
 		let nextProgress = currentProgress;
 
-		if (currentProgress >= 0 && currentProgress < 0.2) { nextProgress += 0.01; }
-		else if (currentProgress >= 0.2 && currentProgress < 0.5) { nextProgress += 0.004; }
-		else if (currentProgress >= 0.5 && currentProgress < 0.8) { nextProgress += 0.002; }
-		else if (currentProgress >= 0.8 && currentProgress < 0.99) { nextProgress += 0.0005; }
+		if (currentProgress >= 0 && currentProgress < 0.2) { nextProgress += 0.1; }
+		else if (currentProgress >= 0.2 && currentProgress < 0.5) { nextProgress += 0.04; }
+		else if (currentProgress >= 0.5 && currentProgress < 0.8) { nextProgress += 0.02; }
+		else if (currentProgress >= 0.8 && currentProgress < 0.99) { nextProgress += 0.005; }
+		else {
+			this.interval && clearInterval(this.interval);
+		}
+
 		this.props.dispatch(appActions.updateLoadingProgress(nextProgress));
 	};
-
-	closingTick = () => {
-		const nextProgress = this.props.progress + 0.01 + (Math.random() * 0.01);
-
-		if (nextProgress >= 1 && this.interval) clearInterval(this.interval);
-		this.props.dispatch(appActions.updateLoadingProgress(nextProgress));
-	}
 }
 
 const styles = StyleSheet.create({

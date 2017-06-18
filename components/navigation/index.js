@@ -3,7 +3,7 @@ import withRedux from 'next-redux-wrapper';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Router from 'next/router';
 
-import { colors } from '../utils/index';
+import { colors } from '../../utils/index';
 
 type Props = {
 	url?: Object,
@@ -20,26 +20,24 @@ export default class Navigation extends Component {
 	}
 
 	renderLogo() {
-		return <View>
-			<Text style={styles.text}>Universal UI</Text>
-		</View>;
+		return <TouchableOpacity
+			onPress={() => Router.push('/')}>
+			<Text style={styles.text}>UNIVERSAL UI</Text>
+		</TouchableOpacity>;
 	}
 
 	renderMenus() {
 		return <View style={styles.menuContainer}>
 			{menus.map((menu, i) => {
-				const activeWrapperStyle = (this.props.url
-					&& this.props.url.pathname === menu.link) ? {
-					backgroundColor: 'rgba(255, 255, 255, 0.07)',
-				} : {};
+				const active = this.props.url && this.props.url.pathname === menu.link,
+					activeWrapperStyle = active ? { backgroundColor: 'rgba(255, 255, 255, 0.1)', } : {},
+					activeTextStyle = active ? { color: '#ffffff', } : {};
 
 				return <TouchableOpacity
 					activeOpacity={0.2} key={i}
 					style={[styles.menuItemWrapper, activeWrapperStyle]}
-					onPress={() => {
-						Router.push(menu.link);
-					}}>
-					<Text style={styles.menuText}>{menu.title}</Text>
+					onPress={() => Router.push(menu.link)}>
+					<Text style={[styles.menuText, activeTextStyle]}>{menu.title}</Text>
 				</TouchableOpacity>})}
 		</View>;
 	}
@@ -50,6 +48,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		backgroundColor: colors.main,
+		paddingTop: 8,
 		paddingLeft: 10, paddingRight: 10,
 	},
 	text: {
@@ -66,26 +65,26 @@ const styles = StyleSheet.create({
 		borderRadius: 4,
 	},
 	menuText: {
-		color: '#ffffff',
-		fontSize: 12,
-		fontWeight: '300',
+		color: 'rgba(255, 255, 255, 0.6)',
+		fontSize: 11,
+		fontWeight: '500',
 	},
 });
 
 const menus = [{
-	title: 'Platforms',
+	title: 'PLATFORMS',
 	link: '/platforms',
 	active: true,
 }, {
-	title: 'Showcases',
+	title: 'SHOWCASES',
 	link: '/showcases',
 }, {
-	title: 'Docs',
+	title: 'DOCS',
 	link: '/docs',
 }, {
-	title: 'Support',
+	title: 'SUPPORT',
 	link: '/support',
 },  {
-	title: 'Ecosystem',
+	title: 'ECOSYSTEM',
 	link: '/ecosystem',
 }, ];
