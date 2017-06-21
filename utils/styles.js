@@ -1,9 +1,6 @@
 import { StyleSheet, Platform } from 'react-native';
 import { colors } from './colors';
-
-export const iStyles = StyleSheet.create({
-
-});
+import { configs } from './configs';
 
 export const baseStyles = {
 	text: {
@@ -12,3 +9,11 @@ export const baseStyles = {
 		paddingLeft: 10,
 	},
 };
+
+
+export const iStyles = StyleSheet.create({
+	contentContainer: {
+		width: '100%', maxWidth: configs.maxContentWidth,
+		margin: 'auto',
+	},
+});

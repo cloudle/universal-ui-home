@@ -13,19 +13,16 @@ app.prepare()
 		const server = express();
 
 		// Temporary fix for Bodymovin.. on server side
-		server.use((req, res, next) => {
-			global.requestAnimationFrame = () => {};
-			global.document = {
-				createElement: () => ({ getContext: () => {} }),
-				createElementNS: () => ({ getContext: () => {} }),
-				getElementsByTagName: () => ({ getContext: () => {} }),
-			};
-			global.navigator = {
-				userAgent: req.headers['user-agent'],
-				isServer: true,
-			};
-			next();
-		});
+		global.requestAnimationFrame = () => {};
+		global.document = {
+			createElement: () => ({ getContext: () => {} }),
+			createElementNS: () => ({ getContext: () => {} }),
+			getElementsByTagName: () => ({ getContext: () => {} }),
+		};
+		global.navigator = {
+			userAgent: 'user-agent',
+			isServer: true,
+		};
 
 		server.get('*', (req, res) => {
 			return handle(req, res);

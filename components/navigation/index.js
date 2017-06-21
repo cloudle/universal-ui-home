@@ -3,7 +3,7 @@ import withRedux from 'next-redux-wrapper';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Router from 'next/router';
 
-import { colors } from '../../utils/index';
+import { colors, iStyles } from '../../utils/index';
 
 type Props = {
 	url?: Object,
@@ -14,8 +14,10 @@ export default class Navigation extends Component {
 
 	render() {
 		return <View style={styles.container}>
-			{this.renderLogo()}
-			{this.renderMenus()}
+			<View style={[iStyles.contentContainer, styles.contentContainer]}>
+				{this.renderLogo()}
+				{this.renderMenus()}
+			</View>
 		</View>;
 	}
 
@@ -45,18 +47,18 @@ export default class Navigation extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'row',
-		alignItems: 'center',
 		backgroundColor: colors.main,
 		paddingTop: 8,
 		paddingLeft: 10, paddingRight: 10,
+	},
+	contentContainer: {
+		flexDirection: 'row', alignItems: 'center',
 	},
 	text: {
 		color: '#ffffff',
 	},
 	menuContainer: {
 		flexDirection: 'row',
-		marginLeft: 20, marginRight: 20,
 		flex: 1,
 	},
 	menuItemWrapper: {

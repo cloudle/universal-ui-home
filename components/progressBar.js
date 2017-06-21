@@ -29,7 +29,7 @@ export default class ProgressBar extends Component {
 	};
 
 	componentDidMount() {
-		this.interval = setInterval(this.optimisticTick, 200);
+		this.interval = setInterval(this.optimisticTick, 20);
 	}
 
 	componentWillUnmount() {
@@ -58,10 +58,10 @@ export default class ProgressBar extends Component {
 		const currentProgress = this.props.progress;
 		let nextProgress = currentProgress;
 
-		if (currentProgress >= 0 && currentProgress < 0.2) { nextProgress += 0.1; }
-		else if (currentProgress >= 0.2 && currentProgress < 0.5) { nextProgress += 0.04; }
-		else if (currentProgress >= 0.5 && currentProgress < 0.8) { nextProgress += 0.02; }
-		else if (currentProgress >= 0.8 && currentProgress < 0.99) { nextProgress += 0.005; }
+		if (currentProgress >= 0 && currentProgress < 0.2) { nextProgress += 0.01; }
+		else if (currentProgress >= 0.2 && currentProgress < 0.5) { nextProgress += 0.004; }
+		else if (currentProgress >= 0.5 && currentProgress < 0.8) { nextProgress += 0.002; }
+		else if (currentProgress >= 0.8 && currentProgress < 0.99) { nextProgress += 0.0005; }
 		else {
 			this.interval && clearInterval(this.interval);
 		}

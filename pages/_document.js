@@ -20,7 +20,7 @@ export default class MyDocument extends Document {
 					body { margin: 0 } /* custom! */
 					.progress-bar {
 						opacity: 1;
-						transition: opacity 2000ms linear, width 100ms linear;
+						transition: opacity 2000ms linear;
 					}
 					.progress-bar.done {
 						opacity: 0;
