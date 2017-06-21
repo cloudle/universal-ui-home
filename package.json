@@ -7,6 +7,7 @@
     "build": "next build",
     "prod": "next start",
     "next": "next",
+    "deploy": "gcloud beta functions deploy site --entry-point handler --trigger-http --stage-bucket ruui-home --memory=256MB",
     "web": "node server.js",
     "test": "jest"
   },
@@ -31,7 +32,8 @@
     "redux": "^3.7.0",
     "redux-logger": "^3.0.6",
     "simple-markdown": "^0.2.1",
-    "styled-jsx": "^1.0.5"
+    "styled-jsx": "^1.0.5",
+    "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.2",
