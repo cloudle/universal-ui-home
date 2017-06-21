@@ -4,6 +4,7 @@
     ["transform-react-remove-prop-types", { "mode": "wrap" }],
     ["flow-react-proptypes", { "ignoreNodeModules": true }],
     "transform-flow-strip-types",
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
+    "styled-jsx/babel"
   ]
 }
