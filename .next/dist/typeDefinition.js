@@ -1,0 +1,5 @@
+'use strict';
+
+var _react = require('react');var _react2 = _interopRequireDefault(_react);function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_Action', { value: require('prop-types').shape({ action: require('prop-types').any.isRequired }) });if (typeof exports !== 'undefined') Object.defineProperty(exports, 'babelPluginFlowReactPropTypes_proptype_LayoutEvent', { value: require('prop-types').shape({ nativeEvent: require('prop-types').shape({ layout: require('prop-types').shape({ x: require('prop-types').number.isRequired, y: require('prop-types').number.isRequired, width: require('prop-types').number.isRequired, height: require('prop-types').number.isRequired }).isRequired }).isRequired }) });
