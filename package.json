@@ -26,6 +26,7 @@
     "react-native-web": "0.0.101",
     "react-redux": "^5.0.5",
     "react-universal-ui": "^0.1.26",
+    "redux": "^3.7.0",
     "redux-logger": "^3.0.6",
     "simple-markdown": "^0.2.1",
     "styled-jsx": "^1.0.5"
