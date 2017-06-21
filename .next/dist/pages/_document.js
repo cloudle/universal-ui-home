@@ -9,8 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
   };
 }();var _react = require("react");var _react2 = _interopRequireDefault(_react);
-var _document = require("next/dist/server/document.js");var _document2 = _interopRequireDefault(_document);
-var _server = require("styled-jsx/server");var _server2 = _interopRequireDefault(_server);function _interopRequireDefault(obj) {
+var _document = require("next/dist/server/document.js");var _document2 = _interopRequireDefault(_document);function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -34,6 +33,6 @@ var _server = require("styled-jsx/server");var _server2 = _interopRequireDefault
           html = _renderPage.html,
           head = _renderPage.head,
           errorHtml = _renderPage.errorHtml,
-          chunks = _renderPage.chunks;var styles = (0, _server2.default)();return { html: html, head: head, errorHtml: errorHtml, chunks: chunks, styles: styles };
+          chunks = _renderPage.chunks;return { html: html, head: head, errorHtml: errorHtml, chunks: chunks };
     } }]);return MyDocument;
 }(_document2.default);exports.default = MyDocument;
