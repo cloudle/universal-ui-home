@@ -1,0 +1,13 @@
+runtime: nodejs
+env: flex
+service: cloudFront
+
+skip_files:
+  - ^android$
+  - ^ios$
+  - ^src$
+  - ^components$
+  - ^pages$
+  - ^store$
+  - ^utils$
+  - ^\.idea$
