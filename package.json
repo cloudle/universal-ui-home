@@ -3,11 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production PORT=8080 node server.js",
     "build": "next build",
     "prod": "next start",
     "next": "next",
-    "deploy": "gcloud beta functions deploy site --entry-point handler --trigger-http --stage-bucket ruui-home --memory=256MB",
     "web": "node server.js",
     "test": "jest"
   },
